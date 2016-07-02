@@ -15,7 +15,8 @@
     "idoc": {
         "theme": "blog",
         "md": [
-            "index.md"
+            "index.md",
+            "test.md"
         ]
     }
 }
