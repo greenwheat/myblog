@@ -1,0 +1,21 @@
+{
+    "name": "myblog",
+    "version": "0.0.1",
+    "description": "myblog",
+    "keywords": [
+        ""
+    ],
+    "homepage": "http://JSLite.io",
+    "author": "greenwheat",
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "licenses": "MIT",
+    "idoc": {
+        "theme": "blog",
+        "md": [
+            "index.md"
+        ]
+    }
+}
