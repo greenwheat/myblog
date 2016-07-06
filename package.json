@@ -1,7 +1,7 @@
 {
-    "name": "myBlog",
+    "name": "myblog",
     "version": "0.0.1",
-    "description": "",
+    "description": "myblog",
     "keywords": [
         ""
     ],
@@ -15,7 +15,13 @@
     "idoc": {
         "theme": "blog",
         "md": [
-            "index.md"
+            "test.md",
+            "index.md",
+            {
+                "Javascript基础": [
+                    "预解释、作用域、闭包、this.md"
+                ]
+            }
         ]
     }
 }

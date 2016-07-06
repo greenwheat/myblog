@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>myblog</title>
+        
+    <link rel="stylesheet" type="text/css" href="../../static/css/main.css">
+</head>
+<body>
+<div class="navbar navbar-line">
+    <div class="container">
+        <div class="logo">
+            
+                myblog
+            
+        </div>
+        <input type="checkbox" id="idoc_nav" />
+        <div class="menu_tree">
+        <ul><li><a href="../../index.html">test</a></li><li><a href="../../html/index.html">index</a></li><li><a href="#"><span></span>Javascript基础</a><ul><li class="active"><a href="../../html/Javascript基础/预解释、作用域、闭包、this.html">预解释、作用域、闭包、this</a></li></ul></li></ul>    
+        </div>
+        
+        
+
+        <section class="idoc_nav_btn">
+            <label for="idoc_nav"><span></span></label>
+        </section>
+    </div>
+    
+</div>
+
+
+
+
+<div class="extend-to-top">
+    <div class="extend-arrow-up"></div>
+</div>
+
+<div class="container">
+
+    <div class="page-toc">
+        <ul><li><a href="#t0预解释">预解释</a></li><li><a href="#t1作用域">作用域</a></li><li><a href="#t2THIS">THIS</a></li></ul>
+    </div>
+    
+    <div class="content markdown-body">
+        <h2 id="t0&#x9884;&#x89E3;&#x91CA;">&#x9884;&#x89E3;&#x91CA; <a href="#t0&#x9884;&#x89E3;&#x91CA;"> # </a></h2>
+<blockquote>
+<p><strong>&#x9884;&#x89E3;&#x91CA;</strong></p>
+<p>&#x5728;&#x5F53;&#x524D;&#x4F5C;&#x7528;&#x57DF;&#x4E0B;&#xFF0C;JS&#x4EE3;&#x7801;&#x6267;&#x884C;&#x4E4B;&#x524D;&#xFF0C;&#x9996;&#x5148;&#x4F1A;&#x628A;&#x5E26;<code>var</code>&#x548C;<code>function</code>&#x5173;&#x952E;&#x5B57;&#x7684;&#x53D8;&#x91CF;&#x8FDB;&#x884C;&#x63D0;&#x524D;&#x58F0;&#x660E;(declare)&#x6216;&#x8005;&#x5B9A;&#x4E49;(define)&#x3002;
+<code>var</code>&#x53EA;&#x662F;&#x63D0;&#x524D;&#x58F0;&#x660E;&#xFF0C;<code>function</code>&#x662F;&#x63D0;&#x524D;&#x7684;&#x58F0;&#x660E;+&#x5B9A;&#x4E49;&#x90FD;&#x5B8C;&#x6210;&#x4E86;</p>
+</blockquote>
+<hr>
+<p><strong>1. &#x4E0D;&#x7BA1;&#x6761;&#x4EF6;&#x662F;&#x5426;&#x6210;&#x7ACB;&#x90FD;&#x8981;&#x8FDB;&#x884C;&#x9884;&#x89E3;&#x91CA;</strong></p>
+<pre><code class="lang-javascript">    <span class="hljs-keyword">if</span>(!(<span class="hljs-string">&apos;a&apos;</span> <span class="hljs-keyword">in</span> <span class="hljs-built_in">window</span>)){
+        <span class="hljs-keyword">var</span> a = <span class="hljs-number">12</span>;
+    }
+    <span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">//-&gt; undefined</span>
+</code></pre>
+<p><strong>2. &#x53EA;&#x5BF9;&#x201C;=&#x201D;&#x5DE6;&#x8FB9;&#x7684;&#x8FDB;&#x884C;&#x9884;&#x89E3;&#x91CA;&#xFF0C;&#x53F3;&#x8FB9;&#x7684;&#x4E0D;&#x8FDB;&#x884C;&#x9884;&#x89E3;&#x91CA;&#xFF0C;&#x5F53;&#x6267;&#x884C;&#x4EE3;&#x7801;&#x5230;&#x8FD9;&#x4E00;&#x884C;&#x65F6;&#xFF0C;&#x518D;&#x8FDB;&#x884C;&#x8D4B;&#x503C;&#x8FD0;&#x7B97;&#x3002;</strong></p>
+<pre><code class="lang-javascript">    fn1(); <span class="hljs-comment">//-&gt; &#x8F93;&#x51FA;1</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn1</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);}
+    fn1(); <span class="hljs-comment">//-&gt; &#x8F93;&#x51FA;1</span>
+
+    fn2(); <span class="hljs-comment">//-&gt; undefined</span>
+    <span class="hljs-keyword">var</span> fn2 = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{<span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);}
+    fn2(); <span class="hljs-comment">//-&gt; &#x8F93;&#x51FA;2</span>
+</code></pre>
+<blockquote>
+<p><strong><span style="display:inline-block;background:yellow;border:1px solid black;color:black;padding:5px;">&gt;Tips</span></strong> <em>&#x5728;&#x9879;&#x76EE;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4E00;&#x822C;&#x7528;&#x51FD;&#x6570;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x65B9;&#x5F0F;&#x5B9A;&#x4E49;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x662F;&#x60F3;&#x8BA9;&#x5B83;&#x5728;&#x4E0A;&#x9762;&#x5B9A;&#x4E49;&#xFF0C;&#x5E76;&#x4E14;&#x53EA;&#x80FD;&#x5728;&#x4E0B;&#x9762;&#x6267;&#x884C;&#xFF0C;&#x907F;&#x514D;&#x6DF7;&#x4E71;&#x3002;</em></p>
+</blockquote>
+<p><strong>3. &#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;&#x4E0D;&#x8FDB;&#x884C;&#x9884;&#x89E3;&#x91CA;</strong></p>
+<pre><code class="lang-javascript">    <span class="hljs-comment">// window&#x4E0B;&#x9884;&#x89E3;&#x91CA;&#x65F6;&#x4E0D;&#x4F1A;&#x58F0;&#x660E;&#x548C;&#x5B9A;&#x4E49;&#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;move</span>
+    (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">move</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-comment">// &#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;&#x5728;&#x51FD;&#x6570;&#x5185;&#x5F62;&#x6210;&#x7684;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#x8FDB;&#x884C;&#x9884;&#x89E3;&#x91CA;</span>
+        <span class="hljs-built_in">window</span>.setTimeout(move,<span class="hljs-number">10</span>);
+        <span class="hljs-comment">//window.setTimeout(arguments.callee,10);</span>
+        <span class="hljs-comment">// &#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#x4E0D;&#x4F7F;&#x7528;arguments.callee&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x4E25;&#x683C;&#x6A21;&#x5F0F;(&#x201C;use strict&#x201D;)&#x4E0B;&#x5C4F;&#x853D;&#x4E86;&#x5B83;&#x7684;&#x4F7F;&#x7528;</span>
+    })();
+</code></pre>
+<pre><code class="lang-javascript">    <span class="hljs-keyword">var</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">num</span>)</span>{
+        <span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>] = <span class="hljs-number">12</span>; <span class="hljs-comment">//-&gt; &#x628A;&#x7B2C;&#x4E00;&#x4E2A;&#x4F20;&#x9012;&#x8FDB;&#x6765;&#x7684;&#x53C2;&#x6570;&#x503C;&#x4FEE;&#x6539;&#x4E3A;&#x4E86;12&#xFF0C;&#x5728;&#x975E;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E0B;&#x53EF;&#x4EE5;&#x6620;&#x5C04;&#x5230;&#x6211;&#x4EEC;&#x7684;num&#x5F62;&#x53C2;&#x4E0A;&#xFF0C;&#x4F7F;num = 12&#xFF1B;&#x5728;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E0B;&#x4E0D;&#x4F1A;&#x548C;&#x5F62;&#x53C2;&#x4EA7;&#x751F;&#x6620;&#x5C04;</span>
+    };
+</code></pre>
+<blockquote>
+<p><strong><span style="display:inline-block;background:yellow;border:1px solid black;color:black;padding:5px;">&gt;Tips</span></strong> <em>&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x5728;JS&#x4EE3;&#x7801;&#x6700;&#x9876;&#x7AEF;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x6211;&#x4EEC;&#x5199;&#x4E0A;<code>&quot;use strict&quot;;</code>&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#x6211;&#x4EEC;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x4EE3;&#x7801;&#x5C31;&#x90FD;&#x8981;&#x4F7F;&#x7528;&#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E86;
+ &#x4E25;&#x683C;&#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;<code>caller</code>&#x3001;<code>callee</code>&#x3001;<code>arguments</code>&#x5C5E;&#x6027;&#x4E5F;&#x8BB8;&#x5C06;&#x4E0D;&#x53EF;&#x8BBF;&#x95EE;&#xFF0C;&#x4E5F;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;<code>arguments</code>&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x4ED6;&#x4EEC;&#x3002;</em>
+<br> <strong><span style="display:inline-block;background:red;border:1px solid black;color:black;padding:5px;">&gt;Warning</span></strong> <em>JS&#x4E2D;&#xFF0C;&#x51FD;&#x6570;&#x7684;&#x53C2;&#x6570;&#x662F; <strong>&#x6309;&#x503C;&#x4F20;&#x53C2;</strong> &#x7684;&#xFF0C;&#x4E0D;&#x662F;&#x6309;&#x53D8;&#x91CF;&#xFF0C;&#x5982;&#x679C;&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x662F;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x90A3;&#x4E48;&#x5F53;&#x51FD;&#x6570;&#x5185;&#x5F62;&#x53C2;&#x503C;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x6E90;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x3002;&#x5982;&#x679C;&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x90A3;&#x4E48;&#x8981;&#x770B;&#x662F;&#x5426;&#x5F00;&#x8F9F;&#x4E86;&#x65B0;&#x7684;&#x5806;&#x5185;&#x5B58;&#x3002;</em></p>
+</blockquote>
+<pre><code class="lang-javascript">    <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+    (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a</span>)</span>{
+       a[<span class="hljs-number">0</span>] = <span class="hljs-number">100</span>;
+        <span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">//-&gt; [100,2,3]&#x5F62;&#x53C2;a&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;arr&#x6307;&#x5411;&#x540C;&#x4E00;&#x5185;&#x5B58;</span>
+        a = [];
+        a[<span class="hljs-number">0</span>] = <span class="hljs-number">200</span>;
+        <span class="hljs-built_in">console</span>.log(arr); <span class="hljs-comment">//-&gt; [100,2,3]&#x5F62;&#x53C2;a&#x5DF2;&#x7ECF;&#x6307;&#x5411;&#x4E86;&#x65B0;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x56E0;&#x6B64;&#x6539;&#x53D8;a&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;arr</span>
+        <span class="hljs-built_in">console</span>.log(a); <span class="hljs-comment">//-&gt; [200]</span>
+    })(arr);
+</code></pre>
+<p><strong>4. &#x51FD;&#x6570;&#x6267;&#x884C;&#x5F62;&#x6210;&#x7684;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#x7684;&#x9884;&#x89E3;&#x91CA;</strong></p>
+<pre><code class="lang-javascript">    <span class="hljs-keyword">var</span> fn = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+       <span class="hljs-comment">// step 1: &#x7ED9;&#x5F62;&#x53C2;&#x8D4B;&#x503C;</span>
+       <span class="hljs-comment">// step 2: &#x9884;&#x89E3;&#x91CA;</span>
+       <span class="hljs-comment">// step 3: &#x4EE3;&#x7801;&#x4ECE;&#x4E0A;&#x5230;&#x4E0B;&#x4F9D;&#x6B21;&#x6267;&#x884C;</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}; <span class="hljs-comment">// &#x8FD4;&#x56DE;&#x503C;&#xFF0C;return&#x53F3;&#x8FB9;&#x7684;var&#x548C;function&#x4E0D;&#x53C2;&#x4E0E;&#x9884;&#x89E3;&#x91CA;&#xFF0C;&#x5982;&#x679C;&#x8FD4;&#x56DE;&#x7684;&#x662F;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;&#x5219;&#x4F1A;&#x5F00;&#x8F9F;&#x4E00;&#x4E2A;&#x5806;&#x5185;&#x5B58;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5730;&#x5740;</span>
+        <span class="hljs-keyword">var</span> num = <span class="hljs-number">12</span>;
+    };
+    fn(); <span class="hljs-comment">// step 4: &#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#xFF0C;&#x5982;&#x65E0;&#x7279;&#x6B8A;&#x60C5;&#x51B5;&#xFF0C;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#x5C06;&#x4F1A;&#x88AB;&#x9500;&#x6BC1;</span>
+</code></pre>
+<p><strong>5. &#x4E0D;&#x91CD;&#x590D;&#x58F0;&#x660E;&#xFF0C;&#x4F46;&#x4F1A;&#x91CD;&#x590D;&#x5B9A;&#x4E49;</strong></p>
+<pre><code class="lang-javascript">    fn(); <span class="hljs-comment">//step4: &#x8F93;&#x51FA;2</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{alert(<span class="hljs-number">1</span>);} <span class="hljs-comment">//step1:&#x58F0;&#x660E;&#x5E76;&#x5B9A;&#x4E49;fn</span>
+    fn(); <span class="hljs-comment">// step5: &#x8F93;&#x51FA;2</span>
+    <span class="hljs-keyword">var</span> fn = <span class="hljs-number">13</span>; <span class="hljs-comment">//step2&#xFF1A;var fn&#x4E0D;&#x518D;&#x91CD;&#x590D;&#x58F0;&#x660E;  //step6: &#x8D4B;&#x503C;fn=13</span>
+    fn(); <span class="hljs-comment">//step7: &#x76F8;&#x5F53;&#x4E8E;&#x2018;13()&#x2019;&#xFF0C;Error: fn is not a function</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{alert(<span class="hljs-number">2</span>);} <span class="hljs-comment">//step3: &#x91CD;&#x65B0;&#x5B9A;&#x4E49;fn</span>
+</code></pre>
+<hr>
+<h2 id="t1&#x4F5C;&#x7528;&#x57DF;">&#x4F5C;&#x7528;&#x57DF; <a href="#t1&#x4F5C;&#x7528;&#x57DF;"> # </a></h2>
+<p><strong>1. &#x4F5C;&#x7528;&#x57DF;</strong></p>
+<ul>
+<li><strong><code>window</code>&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;(&#x9876;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;)</strong>&#xFF1A;&#x9875;&#x9762;&#x5173;&#x6389;&#x7684;&#x65F6;&#x5019;&#x624D;&#x4F1A;&#x88AB;&#x9500;&#x6BC1;</li>
+<li><strong>&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;</strong>&#xFF1A;&#x51FD;&#x6570;&#x6267;&#x884C;&#x65F6;&#x5F62;&#x6210;&#xFF0C;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x9500;&#x6BC1;</li>
+</ul>
+<blockquote>
+<p><strong><span style="display:inline-block;background:yellow;border:1px solid black;color:black;padding:5px;">&gt;Tips</span></strong> <em>&#x51FD;&#x6570;&#x5728;&#x6267;&#x884C;&#x65F6;&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x5916;&#x754C;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x548C;&#x4FEE;&#x6539;&#x79C1;&#x6709;&#x53D8;&#x91CF;&#xFF0C;&#x8FD9;&#x79CD;&#x4FDD;&#x62A4;&#x673A;&#x5236;&#x53EB;&#x505A;&#x201C;&#x95ED;&#x5305;&#x201D;&#x3002;</em></p>
+</blockquote>
+<p><strong>2. JS&#x4E2D;&#x7684;&#x5185;&#x5B58;&#x5206;&#x7C7B;</strong></p>
+<ul>
+<li><strong>&#x6808;&#x5185;&#x5B58;</strong>&#xFF1A;&#x63D0;&#x4F9B;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x73AF;&#x5883;&#x7684;&#xFF08;&#x5982;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;&#x3001;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#xFF09;</li>
+<li><strong>&#x5806;&#x5185;&#x5B58;</strong>&#xFF1A;&#x4FDD;&#x5B58;&#x5177;&#x4F53;&#x6570;&#x636E;&#x7684;&#xFF0C;&#x5982;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x7684;&#x952E;&#x503C;&#x5BF9;&#x3001;&#x51FD;&#x6570;&#x7684;&#x51FD;&#x6570;&#x4F53;&#xFF0C;&#x5373;&#x5F15;&#x7528;&#x7A7A;&#x95F4;</li>
+</ul>
+<p><strong>3. &#x5168;&#x5C40;&#x53D8;&#x91CF;&#x548C;&#x79C1;&#x6709;&#x53D8;&#x91CF;</strong></p>
+<ul>
+<li><strong>&#x5168;&#x5C40;&#x53D8;&#x91CF;</strong>&#xFF1A;&#x662F;&#x5728;&#x5168;&#x5C40;&#x4F5C;&#x7528;&#x57DF;&#x4E0B;&#x58F0;&#x660E;&#x7684;&#x53D8;&#x91CF;</li>
+<li><strong>&#x79C1;&#x6709;&#x53D8;&#x91CF;</strong>&#xFF1A;&#x662F;&#x5728;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#x4E0B;&#x58F0;&#x660E;&#x7684;&#x53D8;&#x91CF;&#xFF08;&#x5305;&#x62EC;<code>var</code>&#x3001;<code>function</code>&#x3001;&#x5F62;&#x53C2;&#xFF09;</li>
+</ul>
+<p><strong>4. &#x4F5C;&#x7528;&#x57DF;&#x67E5;&#x627E;&#x673A;&#x5236;</strong></p>
+<p>&#x4EE3;&#x7801;&#x6267;&#x884C;&#x4E2D;&#xFF0C;&#x5728;&#x67E5;&#x627E;&#x53D8;&#x91CF;&#x65F6;&#xFF0C;&#x4F1A;&#x5148;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#x67E5;&#x627E;&#xFF0C;&#x770B;&#x6709;&#x6CA1;&#x6709;&#x5F62;&#x53C2;&#x3001;&#x5E26;<code>var</code>&#x6216;<code>function</code>&#x7684;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#xFF0C;&#x5C31;&#x518D;&#x9010;&#x7EA7;&#x5411;&#x4E0A;&#x67E5;&#x627E;&#xFF0C;&#x76F4;&#x5230;<code>window</code>&#x5BF9;&#x8C61;&#xFF08;&#x9876;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;&#xFF09;&#x3002;</p>
+<p><strong>5. &#x4F5C;&#x7528;&#x57DF;&#x9500;&#x6BC1;</strong></p>
+<blockquote>
+<p>&#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x51FD;&#x6570;&#x6267;&#x884C;&#x5F62;&#x6210;&#x7684;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x5F53;&#x6267;&#x884C;&#x5B8C;&#x6210;&#x540E;&#x5C31;&#x9500;&#x6BC1;&#x4E86;&#x3002;</p>
+</blockquote>
+<ul>
+<li>1) &#x4F5C;&#x7528;&#x57DF;&#x4E0D;&#x7ACB;&#x5373;&#x9500;&#x6BC1;</li>
+</ul>
+<pre><code class="lang-javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-keyword">var</span> i = <span class="hljs-number">10</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>)</span>{
+            <span class="hljs-built_in">console</span>.log(n+i++);
+        }
+    }
+fn()(<span class="hljs-number">15</span>); <span class="hljs-comment">//&#x5148;&#x6267;&#x884C;fn&#xFF0C;&#x6709;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x7684;&#x53D8;&#x91CF;i=10&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5806;&#x5185;&#x5B58;&#x5730;&#x5740;xxxfff000&#xFF0C;&#x6211;&#x4EEC;&#x53D1;&#x73B0;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x8FD8;&#x8981;&#x7528;&#x5230;&#x4E00;&#x6B21;&#xFF0C;&#x90A3;&#x4E48;&#x5F53;&#x524D;&#x7684;&#x8FD9;&#x4E2A;fn&#x6267;&#x884C;&#x65F6;&#x5F62;&#x6210;&#x7684;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;(A)&#x5C31;&#x4E0D;&#x80FD;&#x7ACB;&#x5373;&#x9500;&#x6BC1;&#x4E86;&#xFF0C;xxxfff000(15)-&gt;&#x8F93;&#x51FA;25&#xFF0C;A&#x4E2D;&#x7684;i&#x53D8;&#x6210;11&#xFF0C;&#x5F53;xxxfff000&#x6267;&#x884C;&#x5B8C;&#x4E86;&#xFF0C;&#x53D1;&#x73B0;&#x8FD9;&#x4E2A;&#x5730;&#x5740;&#x6CA1;&#x7528;&#x4E86;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5C31;&#x4F1A;&#x628A;A&#x3001;xxxfff000&#x90FD;&#x91CA;&#x653E;&#x6389;&#x3002;</span>
+fn()(<span class="hljs-number">20</span>); <span class="hljs-comment">//&#x5728;&#x6267;&#x884C;fn&#x65F6;&#x53C8;&#x4F1A;&#x91CD;&#x65B0;&#x5F62;&#x6210;&#x53E6;&#x4E00;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x4E0E;&#x4E0A;&#x4E00;&#x884C;&#x4EE3;&#x7801;&#x4E4B;&#x95F4;&#x4E92;&#x76F8;&#x72EC;&#x7ACB;-&gt;&#x8F93;&#x51FA;30</span>
+</code></pre>
+<ul>
+<li>2) &#x4F5C;&#x7528;&#x57DF;&#x4E0D;&#x9500;&#x6BC1;</li>
+</ul>
+<pre><code class="lang-javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-keyword">var</span> i = <span class="hljs-number">10</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">n</span>)</span>{
+            <span class="hljs-built_in">console</span>.log(n+i++);
+        }
+    }
+    <span class="hljs-keyword">var</span> f = fn(); <span class="hljs-comment">//&#x5148;&#x6267;&#x884C;fn&#xFF0C;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;(A)&#xFF0C;&#x5C06;&#x8FD4;&#x56DE;&#x7684;&#x51FD;&#x6570;&#x7684;&#x5806;&#x5185;&#x5B58;&#x5730;&#x5740;xxxfff111&#x8D4B;&#x503C;&#x7ED9;&#x4E86;&#x5916;&#x90E8;&#x53D8;&#x91CF;f&#xFF0C;&#x6B64;&#x65F6;fn&#x6267;&#x884C;&#x7684;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;(A)&#x5C06;&#x4E0D;&#x4F1A;&#x9500;&#x6BC1;</span>
+    f(<span class="hljs-number">15</span>); <span class="hljs-comment">// xxxfff111(15)&#xFF0C;&#x5F62;&#x6210;&#x53E6;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;(B)&#xFF0C;&#x5F62;&#x53C2;&#x8D4B;&#x503C;n=15&#xFF0C;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x53D1;&#x73B0;&#x53D8;&#x91CF;i&#xFF0C;&#x901A;&#x8FC7;&#x4F5C;&#x7528;&#x57DF;&#x67E5;&#x627E;&#x673A;&#x5236;&#xFF0C;&#x627E;&#x5230;&#x4E0A;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;(A)&#x4E2D;&#x7684;i&#xFF0C;&#x56E0;&#x6B64;&#x8F93;&#x51FA;25&#xFF0C;i&#x53D8;&#x4E3A;11</span>
+    f(<span class="hljs-number">20</span>); <span class="hljs-comment">// xxxfff111(15)&#xFF0C;&#x5F62;&#x6210;&#x53E6;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;(C)&#xFF0C;&#x5F62;&#x53C2;&#x8D4B;&#x503C;n=20&#xFF0C;&#x6267;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x53D1;&#x73B0;&#x53D8;&#x91CF;i&#xFF0C;&#x901A;&#x8FC7;&#x4F5C;&#x7528;&#x57DF;&#x67E5;&#x627E;&#x673A;&#x5236;&#xFF0C;&#x627E;&#x5230;&#x4E0A;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;(A)&#x4E2D;&#x7684;i&#xFF0C;&#x6B64;&#x65F6;i&#x7ECF;&#x8FC7;&#x4E0A;&#x4E00;&#x6B65;&#x8BA1;&#x7B97;&#x5DF2;&#x7ECF;&#x53D8;&#x6210;11&#xFF0C;&#x56E0;&#x6B64;&#x8F93;&#x51FA;31&#xFF0C;i&#x53D8;&#x4E3A;12</span>
+</code></pre>
+<blockquote>
+<p><strong><span style="display:inline-block;background:yellow;border:1px solid black;color:black;padding:5px;">&gt;Tips</span></strong> <em>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x77E5;&#x9053;f&#x5DF2;&#x7ECF;&#x5931;&#x53BB;&#x4F5C;&#x7528;&#xFF0C;&#x4E3A;&#x4E86;&#x4F18;&#x5316;&#x6027;&#x80FD;&#xFF0C;&#x5E94;&#x5F53;&#x5C06;f=null&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x8BDD;(A)&#x548C;xxxfff111&#x6CA1;&#x6709;&#x4E86;&#x5916;&#x90E8;&#x5F15;&#x7528;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x4F1A;&#x5728;&#x7A7A;&#x95F2;&#x65F6;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x2018;&#x5783;&#x573E;&#x56DE;&#x6536;&#x2019;&#xFF0C;&#x5426;&#x5219;(A)&#x548C;xxxfff111&#x5C06;&#x4E00;&#x8D77;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x65E0;&#x6CD5;&#x91CA;&#x653E;&#x5185;&#x5B58;&#x3002;</em></p>
+</blockquote>
+<p><strong>6. &#x51E0;&#x79CD;&#x6784;&#x5EFA;&#x4E0D;&#x9500;&#x6BC1;&#x4F5C;&#x7528;&#x57DF;&#x7684;&#x5E38;&#x7528;&#x5F62;&#x5F0F;</strong></p>
+<ul>
+<li><p>1) &#x51FD;&#x6570;&#x6267;&#x884C;&#xFF0C;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5F15;&#x7528;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x503C;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x8D4B;&#x503C;&#x7ED9;&#x5916;&#x90E8;&#x53D8;&#x91CF;&#xFF0C;&#x90A3;&#x4E48;&#x5F53;&#x524D;&#x51FD;&#x6570;&#x5F62;&#x6210;&#x7684;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#x5C31;&#x4E0D;&#x518D;&#x9500;&#x6BC1;&#xFF0C;&#x4F8B;&#x5982;<em>5-2</em>)&#x3002;</p>
+</li>
+<li><p>2) &#x51FD;&#x6570;A&#x6267;&#x884C;&#xFF0C;&#x5C06;&#x5185;&#x90E8;&#x5B9A;&#x4E49;&#x7684;&#x51FD;&#x6570;B&#x7ED1;&#x5B9A;&#x7ED9;&#x4E86;DOM&#x5143;&#x7D20;&#x7684;&#x4E8B;&#x4EF6;C&#xFF0C;&#x90A3;&#x4E48;&#x5F53;&#x524D;&#x51FD;&#x6570;B&#x4E5F;&#x76F8;&#x5F53;&#x4E8E;&#x88AB;&#x5916;&#x90E8;&#x5360;&#x7528;&#x4E86;&#xFF0C;&#x51FD;&#x6570;A&#x6267;&#x884C;&#x5F62;&#x6210;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x4E5F;&#x4E0D;&#x4F1A;&#x9500;&#x6BC1;&#x4E86;</p>
+</li>
+</ul>
+<pre><code class="lang-javascript">    <span class="hljs-comment">// e.g. &#x9009;&#x9879;&#x5361;&#x5FAA;&#x73AF;&#x7ED1;&#x5B9A;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#xFF0C;&#x6BCF;&#x4E00;&#x6B21;&#x5FAA;&#x73AF;&#xFF0C;&#x81EA;&#x6267;&#x884C;&#x51FD;&#x6570;&#x90FD;&#x4F1A;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#xFF08;&#x4E00;&#x5171;&#x5F62;&#x6210;oLis.length&#x4E2A;&#xFF09;&#xFF0C;&#x5728;&#x6BCF;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#xFF0C;&#x90FD;&#x628A;&#x91CC;&#x9762;&#x5B9A;&#x4E49;&#x7684;&#x51FD;&#x6570;&#x7ED1;&#x5B9A;&#x7ED9;&#x4E86;&#x5916;&#x9762;&#x5143;&#x7D20;&#x7684;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#xFF0C;&#x8FD9;&#x4EEC;&#x7684;&#x8BDD;&#x6BCF;&#x4E00;&#x6B21;&#x5F62;&#x6210;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x90FD;&#x4E0D;&#x9500;&#x6BC1;&#x4E86;&#xFF08;&#x6709;oLis.length&#x4E2A;&#x4E0D;&#x9500;&#x6BC1;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF09;</span>
+    <span class="hljs-keyword">var</span> oLis = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">&quot;li&quot;</span>);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i&lt;oLis.length;i++){
+        ~<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">index</span>)</span>{
+            oLis.item(index).onclick=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                tabChange(index);
+            };
+        }(i);
+    }
+</code></pre>
+<ul>
+<li>3) &#x5728;&#x4F7F;&#x7528;<code>setTimeout</code>&#x5B9E;&#x73B0;&#x8F6E;&#x8BE2;&#x52A8;&#x753B;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;<code>move</code>&#x9700;&#x8981;&#x4F20;&#x53C2;&#xFF0C;&#x90A3;&#x4E48;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x7684;&#x5199;&#x6CD5;&#x4F1A;&#x5F62;&#x6210;&#x5F88;&#x591A;&#x5D4C;&#x5957;&#x7684;&#x4E0D;&#x9500;&#x6BC1;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF0C;&#x975E;&#x5E38;&#x8017;&#x6027;&#x80FD;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">move</span>(<span class="hljs-params">tar</span>)</span>{
+    &lt;!--javascript code--&gt;
+    <span class="hljs-comment">//window.setTimeout(move,10); -&gt;&#x8FD9;&#x6837;&#x7B2C;&#x4E8C;&#x6B21;&#x8FD0;&#x884C;&#x7684;&#x65F6;&#x5019;&#x6CA1;&#x6709;&#x4F20;&#x9012;&#x53C2;&#x6570;</span>
+    <span class="hljs-built_in">window</span>.setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        move(tar);
+    },<span class="hljs-number">10</span>); <span class="hljs-comment">//-&gt; &#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x662F;&#x6BCF;&#x4E00;&#x6B21;&#x6267;&#x884C;&#x5B9A;&#x65F6;&#x5668;&#x90FD;&#x4F1A;&#x5F62;&#x6210;&#x4E00;&#x4E2A;&#x79C1;&#x6709;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF08;&#x533F;&#x540D;&#x51FD;&#x6570;&#x5F62;&#x6210;&#x7684;&#xFF09;A&#xFF0C;&#x5728;A&#x4E2D;&#x4F7F;&#x7528;&#x4E86;&#x4E0A;&#x7EA7;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#x7684;tar&#x7684;&#x503C;&#xFF0C;&#x800C;&#x4E14;&#x6267;&#x884C;&#x4E86;move&#x53C8;&#x5F62;&#x6210;&#x4E86;&#x4E00;&#x4E2A;&#x5C0F;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#xFF08;&#x800C;&#x5728;&#x5C0F;&#x7684;&#x4F5C;&#x7528;&#x57DF;&#x4E2D;&#x4F1A;&#x4F7F;&#x7528;tar&#x7684;&#x503C;&#xFF09;&#xFF0C;&#x8FD9;&#x6837;&#x6BCF;&#x4E00;&#x6B21;&#x5B9A;&#x65F6;&#x5668;&#x5F62;&#x6210;&#x7684;A&#x90FD;&#x4E0D;&#x80FD;&#x9500;&#x6BC1;&#x4E86;</span>
+}
+move(<span class="hljs-number">100</span>); <span class="hljs-comment">//-&gt; &#x7B2C;&#x4E00;&#x6B21;&#x6267;&#x884C;&#x4F20;&#x9012;100</span>
+</code></pre>
+<p><strong>7. &#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x7684;&#x91CA;&#x653E;/&#x56DE;&#x6536;</strong></p>
+<blockquote>
+<p>&#x4E00;&#x822C;&#x5730;&#xFF0C;&#x5806;&#x5185;&#x5B58;&#x5728;&#x6CA1;&#x6709;&#x53D8;&#x91CF;&#x6216;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x5360;&#x7528;&#x6216;&#x5F15;&#x7528;&#x540E;&#xFF0C;&#x6808;&#x5185;&#x5B58;&#x5728;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x5B8C;&#x6BD5;&#x540E;&#x3001;&#x5185;&#x90E8;&#x5B9A;&#x4E49;&#x7684;&#x53D8;&#x91CF;&#x6CA1;&#x6709;&#x88AB;&#x5916;&#x90E8;&#x5360;&#x7528;&#x65F6;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x4F1A;&#x5C06;&#x5176;&#x56DE;&#x6536;&#x91CA;&#x653E;&#x3002;</p>
+</blockquote>
+<p><em>&#x3010;&#x8C37;&#x6B4C;&#x6D4F;&#x89C8;&#x5668;&#x3011;</em> &#x95F4;&#x9694;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x68C0;&#x67E5;&#x52A8;&#x6001;&#x5F00;&#x8F9F;&#x7684;&#x5185;&#x5B58;&#x662F;&#x5426;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x6CA1;&#x6709;&#x88AB;&#x5360;&#x7528;&#x7684;&#x5185;&#x5B58;&#x5C06;&#x4F1A;&#x88AB;&#x56DE;&#x6536;&#xFF1B;</p>
+<p><em>&#x3010;&#x706B;&#x72D0;&amp;IE&#x3011;</em> &#x8BA1;&#x6570;&#x5668;<code>counter</code>&#x65B9;&#x5F0F;&#xFF0C;&#x5F53;&#x5185;&#x5B58;&#x88AB;&#x5360;&#x7528;&#x4E00;&#x6B21;&#xFF0C;<code>counter++</code>&#xFF1B;&#x5F53;&#x5F15;&#x7528;&#x51CF;&#x5C11;&#x4E00;&#x6B21;&#xFF0C;<code>counter--</code>&#x3002;&#x5F53;<code>counter==0</code>&#x65F6;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5C06;&#x5185;&#x5B58;&#x91CA;&#x653E;&#xFF1B;&#x4F46;&#x662F;&#x6709;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF08;&#x5C24;&#x5176;&#x662F;IE&#xFF09;<code>counter</code>&#x7684;&#x8BA1;&#x7B97;&#x4F1A;&#x51FA;&#x73B0;&#x6DF7;&#x4E71;&#xFF0C;&#x5185;&#x5B58;&#x65E0;&#x6CD5;&#x91CA;&#x653E;&#x3002;</p>
+<h2 id="t2THIS">THIS <a href="#t2THIS"> # </a></h2>
+<ul>
+<li>this&#x7684;</li>
+</ul>
+
+        <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
+    </div>
+
+</div>
+
+<style>
+    .page-toc{
+        overflow: hidden;
+        position:fixed;
+        left:50%;
+        margin-left:250px;
+	width:350px
+    }
+    .page-toc > ul li{
+        list-style-position: inside;
+	line-height:120%
+    }
+    .page-toc > ul{
+        transition: all 0.2s;
+        position: relative;
+    }
+    .page-toc > ul a {
+	color:#009a61;
+	font-size:110% ! important;
+	line-height:120%
+    }
+    .page-toc > ul .red{
+        background: #f3f3f3;
+        z-index: 1;
+        border-left: 3px solid #009a61;
+        -webkit-transition: all .2s ease;
+        transition: all .2s ease;
+	color:#000
+    }
+
+    .markdown-body{
+	font-size: 120% ! important;
+        max-width:800px;
+    }
+    .container{
+       font-size: 110% ! important;
+    }
+    html,body,.container{
+      font-family: Helvetica Neue,Helvetica,Arial,PingFang SC,Hiragino Sans GB,WenQuanYi Micro Hei,Microsoft Yahei,sans-serif ! important;
+    }
+    .markdown-body pre code{
+        font-size: 20px;
+        line-height: 24px;
+    }
+</style>
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script>
+
+var bar = $(window).height() - $('.navbar ').height() - $('.page-toc').position().top;
+var count =  bar/26/2;
+var barHeight = $('.page-toc').outerHeight();
+$('.page-toc li').eq(0).children('a').addClass('red').each(function (index,item) {
+    var id = $(this).attr('href').toString();
+    $(id,'.markdown-body').css('paddingTop','48');
+});
+var arr = [];
+$("h2,h3").each(function () {
+    arr.push($(this).position().top);
+});
+if(!($(window).height()-50 > barHeight)){
+    var flagTop = true;
+}
+function dark(){
+    var top =  Math.abs($('.page-toc > ul').position().top);
+    var cur = $(document).scrollTop();
+    for(var i = arr.length; i >=0;i--){
+        if(arr[i]<=cur){
+            break;
+        }
+    }
+    if(i===-1){
+        i = 0;
+    }
+    $('.page-toc li a').removeClass('red');
+    $('.page-toc li').eq(i).children('a').addClass('red');
+    if(flagTop){
+      if(i> arr.length-count){
+          $(' .page-toc > ul').css('top',-(barHeight-bar));
+          return;
+      }
+      if(i>count){
+          $(' .page-toc > ul').css('top',-26*(i-count));
+      }else{
+          $(' .page-toc > ul').css('top',0);
+      }
+    }
+}
+$(window).on('scroll',dark);
+
+</script>
+</body>
+</html>

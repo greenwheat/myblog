@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>myblog</title>
         
-    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/main.css">
 </head>
 <body>
-<div class="navbar ">
+<div class="navbar navbar-line">
     <div class="container">
         <div class="logo">
             
@@ -17,7 +17,7 @@
         </div>
         <input type="checkbox" id="idoc_nav" />
         <div class="menu_tree">
-        <ul><li class="active"><a href="index.html">test</a></li><li><a href="html/index.html">index</a></li><li><a href="#"><span></span>Javascript基础</a><ul><li><a href="html/Javascript基础/预解释、作用域、闭包、this.html">预解释、作用域、闭包、this</a></li></ul></li></ul>    
+        <ul><li><a href="../index.html">index</a></li><li class="active"><a href="../html/test.html">test</a></li></ul>    
         </div>
         
         
@@ -31,17 +31,6 @@
 
 
 
-<div class="bs-docs-header">
-    <div class="container">
-        <h1>myblog</h1>
-        <p>myblog</p>
-    </div>
-</div>
-
-
-<div class="extend-to-top">
-    <div class="extend-arrow-up"></div>
-</div>
 
 <div class="container">
 
@@ -108,10 +97,7 @@
 var bar = $(window).height() - $('.navbar ').height() - $('.page-toc').position().top;
 var count =  bar/26/2;
 var barHeight = $('.page-toc').outerHeight();
-$('.page-toc li').eq(0).children('a').addClass('red').each(function (index,item) {
-    var id = $(this).attr('href').toString();
-    $(id,'.markdown-body').css('paddingTop','48');
-});
+$('.page-toc li').eq(0).children('a').addClass('red');
 var arr = [];
 $("h2,h3").each(function () {
     arr.push($(this).position().top);
@@ -145,7 +131,6 @@ function dark(){
     }
 }
 $(window).on('scroll',dark);
-
 </script>
 </body>
 </html>
