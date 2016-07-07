@@ -1,9 +1,9 @@
 {
-    "name": "myblog",
+    "name": "Javascript",
     "version": "0.0.1",
-    "description": "myblog",
+    "description": "/easy\\sway/i.test('javascript') ? 'Exact' : 'Think Beautiful:)'",
     "keywords": [
-        ""
+        "javascript"
     ],
     "homepage": "http://JSLite.io",
     "author": "greenwheat <504811480@qq.com>",
@@ -15,7 +15,6 @@
     "idoc": {
         "theme": "blog",
         "md": [
-            "test.md",
             "index.md",
             {
                 "Javascript基础": [

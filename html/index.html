@@ -101,10 +101,22 @@
 var bar = $(window).height() - $('.navbar ').height() - $('.page-toc').position().top;
 var count =  bar/26/2;
 var barHeight = $('.page-toc').outerHeight();
-$('.page-toc li').eq(0).children('a').addClass('red').each(function (index,item) {
-    var id = $(this).attr('href').toString();
-    $(id,'.markdown-body').css('paddingTop','48');
+$('.page-toc li').eq(0).children('a').addClass('red');
+[$('.page-toc a'),$('.markdown-body a')].forEach(function (item) {
+    $(item).each(function (index,item) {
+        var id = $(item).attr('href');
+        if(/^#/.test(id)){
+            var offsetTop = $(id).offset().top;
+            $(item).on('click',function (e) {
+                e.preventDefault();
+                $(document).scrollTop(offsetTop-60);
+            })
+        }
+    });
 });
+$('.extend-to-top').on('click',function () {
+    $(document).scrollTop(0);
+})
 var arr = [];
 $("h2,h3").each(function () {
     arr.push($(this).position().top);
