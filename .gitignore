@@ -1,4 +1,4 @@
 node_modules
 .idea
-md
-
+_book
+doc/_book

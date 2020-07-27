@@ -1,31 +1,38 @@
 {
-    "name": "Javascript",
-    "version": "0.0.1",
-    "description": "/easy\\sway/i.test('javascript') ? 'Exact' : 'Think Beautiful:)'",
-    "keywords": [
-        "javascript"
-    ],
-    "homepage": "http://JSLite.io",
-    "author": "greenwheat <504811480@qq.com>",
-    "repository": {
-        "type": "git",
-        "url": ""
-    },
-    "licenses": "MIT",
-    "idoc": {
-        "theme": "blog",
-        "md": [
-            "index.md",
-            {
-                "Javascript基础": [
-                    "预解释、作用域、闭包、this.md"
-                ]
-            },
-            {
-                "面向对象": [
-                    "继承、封装、多态.md"
-                ]
-            }
-        ]
-    }
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "knowledge base powered by gitbook",
+  "main": "config/index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "gitbook serve doc _book",
+    "build": "gitbook build doc _book",
+    "gen-map": "node config/summary-generate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greenwheat/myblog.git"
+  },
+  "keywords": [
+    "knowledge",
+    "base",
+    "gitbook",
+    "webapp",
+    "fe"
+  ],
+  "author": "greenwheat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greenwheat/myblog/issues"
+  },
+  "homepage": "https://github.com/greenwheat/myblog#readme",
+  "dependencies": {
+    "babel-core": "^6.26.3"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.0"
+  }
 }
