@@ -22,11 +22,11 @@
 
 - 先运行Automator，选择“服务”：
 
-![选择“服务”](./img/mac01.png "选择“服务”")
+![选择“服务”]("./../../img/mac01.png "选择“服务”")
 
 - 然后，执行以下操作：
 
-![“服务”面板](./img/mac02.png "“服务”面板")
+![“服务”面板](./../../img/mac02.png "“服务”面板")
 
    > a. 在右侧面板选择“服务”收到选定的“文件夹”，位于“Finder.app“，该选项是为了从Finder中接收一个文件夹；<br>
    > b. 在左侧面板选择”实用工具“，然后找到”运行Shell脚本“，把它拽到右侧面板里；<br>
@@ -39,7 +39,7 @@
 ```
 - 保存为“Open With VSCode”后，打开 Finder，选中一个文件夹，点击右键，“服务”，就可以看到“Open With VSCode”菜单：
 
-![文件夹右键](./img/mac03.png "文件夹右键")
+![文件夹右键](./../../img/mac03.png "文件夹右键")
 
 
 #### 4. 在当前目录启动shell窗口的工具：Go2Shell
@@ -47,4 +47,4 @@
 链接:https://pan.baidu.com/s/1p0u0srcq251uQrMugWPUxw  
 密码:bkkv
 
-![配置参考](./img/mac04.png)
+![配置参考](./../../img/mac04.png)

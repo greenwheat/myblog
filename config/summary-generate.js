@@ -35,7 +35,7 @@ function getDirMap(filepath, depth = 0) {
 // dirMap = getDirMap(path.resolve(__dirname, "../doc"));
 try {
   dirMap = getDirMap("doc");
-  console.log(chalk.green("generate directory map succeed!"));
+  console.log(chalk.cyan("info: ") +"generate directory map " + chalk.green("succeed!"));
 } catch (error) {
   console.log(chalk.red("Error:", error));
 }
@@ -95,7 +95,24 @@ try {
     { encoding: "utf8" },
     function (err) {
       if (!err) {
-        console.log("write summary.md file " + chalk.green("success!"));
+        console.log(
+          chalk.cyan("info: ") +
+            "write summary.md file " +
+            chalk.green("success!")
+        );
+        console.log("work done!");
+      } else {
+        console.log(err);
+      }
+    }
+  );
+  fs.writeFile(
+    path.resolve(__dirname, "../doc/README.md"),
+    content,
+    { encoding: "utf8" },
+    function (err) {
+      if (!err) {
+        console.log(chalk.cyan("info: ") +"write README.md file " + chalk.green("success!"));
         console.log("work done!");
       } else {
         console.log(err);
@@ -103,5 +120,3 @@ try {
     }
   );
 })(dirMap);
-
-
