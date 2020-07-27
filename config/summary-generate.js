@@ -23,7 +23,11 @@ function getDirMap(filepath, depth = 0) {
   const dirs = fs.readdirSync(filepath);
 
   result.children = dirs.map(dir => {
-    if (path.basename(dir) === "_book" || path.basename(dir) === "SUMMARY.md") {
+    if (
+      [".DS_Store", "_book", "SUMMARY.md", "assets"].indexOf(
+        path.basename(dir)
+      ) >= 0
+    ) {
       return false;
     }
     return getDirMap(path.join(filepath, dir), depth + 1);
@@ -35,7 +39,9 @@ function getDirMap(filepath, depth = 0) {
 // dirMap = getDirMap(path.resolve(__dirname, "../doc"));
 try {
   dirMap = getDirMap("doc");
-  console.log(chalk.cyan("info: ") +"generate directory map " + chalk.green("succeed!"));
+  console.log(
+    chalk.cyan("info: ") + "generate directory map " + chalk.green("succeed!")
+  );
 } catch (error) {
   console.log(chalk.red("Error:", error));
 }
@@ -70,11 +76,12 @@ try {
     }
     const { name, path, depth, type } = item;
     let result = "";
+    let title = name.split(".")[0]
     try {
       if (type === "directory") {
-        result = `${"  ".repeat(+(depth - 1))}* ${name}`;
+        result = `${"  ".repeat(+(depth - 1))}* ${title}`;
       } else if (type === "file") {
-        result = `${"  ".repeat(+(depth - 1))}* [${name}](./${path
+        result = `${"  ".repeat(+(depth - 1))}* [${title}](./${path
           .split("doc/")
           .join("")})`;
       }
@@ -106,13 +113,18 @@ try {
       }
     }
   );
+  const introContent = "# Introduction\n\n" + content;
   fs.writeFile(
     path.resolve(__dirname, "../doc/README.md"),
-    content,
+    introContent,
     { encoding: "utf8" },
     function (err) {
       if (!err) {
-        console.log(chalk.cyan("info: ") +"write README.md file " + chalk.green("success!"));
+        console.log(
+          chalk.cyan("info: ") +
+            "write README.md file " +
+            chalk.green("success!")
+        );
         console.log("work done!");
       } else {
         console.log(err);

@@ -1,4 +1,5 @@
 node_modules
+.DS_Store
 .idea
 _book
 doc/_book
