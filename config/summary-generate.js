@@ -113,7 +113,7 @@ console.log(JSON.stringify(dirMap));
       }
     }
   );
-  const introContent = "# Introduction\n\n" + content;
+  const introContent = "# Introduction\n![Node.js CI](https://github.com/greenwheat/myblog/workflows/Node.js%20CI/badge.svg?branch=master)\n\n" + content;
   fs.writeFile(
     path.resolve(__dirname, "../doc/README.md"),
     introContent,
