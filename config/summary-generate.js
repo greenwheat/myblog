@@ -20,16 +20,16 @@ function getDirMap(filepath, depth = 0) {
 
   result.type = "directory";
 
-  const dirs = fs.readdirSync(filepath);
+  let dirs = fs.readdirSync(filepath);
 
-  result.children = dirs.map(dir => {
-    if (
+  dirs = dirs.filter(
+    dir =>
       [".DS_Store", "_book", "SUMMARY.md", "assets"].indexOf(
         path.basename(dir)
-      ) >= 0
-    ) {
-      return false;
-    }
+      ) < 0
+  );
+
+  result.children = dirs.map(dir => {
     return getDirMap(path.join(filepath, dir), depth + 1);
   });
 
@@ -46,7 +46,7 @@ try {
   console.log(chalk.red("Error:", error));
 }
 
-// console.log(JSON.stringify(dirMap));
+console.log(JSON.stringify(dirMap));
 
 /**
  * * Node
@@ -76,14 +76,14 @@ try {
     }
     const { name, path, depth, type } = item;
     let result = "";
-    let title = name.split(".")[0]
+    
     try {
       if (type === "directory") {
-        result = `${"  ".repeat(+(depth - 1))}* ${title}`;
+        result = `${"  ".repeat(+(depth - 1))}* ${name}`;
       } else if (type === "file") {
-        result = `${"  ".repeat(+(depth - 1))}* [${title}](./${path
-          .split("doc/")
-          .join("")})`;
+        let title = name.split(".md")[0];
+        result = `${"  ".repeat(+(depth - 1))}* [- ${title}](./${path
+          .replace(/\bdoc\//,"")})`;
       }
     } catch (error) {
       console.log(chalk.redBright("Error: "), error);
