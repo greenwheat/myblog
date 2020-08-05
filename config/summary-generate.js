@@ -46,7 +46,7 @@ try {
   console.log(chalk.red("Error:", error));
 }
 
-console.log(JSON.stringify(dirMap));
+// console.log(JSON.stringify(dirMap));
 
 /**
  * * Node

@@ -30,3 +30,9 @@ const even = (element) => element % 2 === 0;
 console.log(array.some(even));
 // expected output: true
 ```
+
+### Array.prototype.from()
+
+> 将类数组转化为数组
+
+
