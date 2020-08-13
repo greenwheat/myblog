@@ -34,6 +34,7 @@
   * [- VSCode](./09-前端工具类/VSCode.md)
   * [- 静态页面and文档生成工具](./09-前端工具类/静态页面and文档生成工具.md)
 * 10-Python学习笔记
+  * [- 常用模块或库](./10-Python学习笔记/常用模块或库.md)
   * [- 面向对象](./10-Python学习笔记/面向对象.md)
 * 11-笔记
   * [- 使用Gitbook和github-pages构建博客](./11-笔记/使用Gitbook和github-pages构建博客.md)

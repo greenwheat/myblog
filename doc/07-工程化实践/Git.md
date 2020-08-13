@@ -94,8 +94,7 @@
 
 #### 14. 安装cnpm 
 ```bash
-   npm install -g cnpm --
-   registry=https://registry.npm.taobao.org
+   npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
 ## SSH-KEY配置（多Git账号）
