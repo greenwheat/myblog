@@ -457,3 +457,12 @@ Could not open a connection to your authentication agent.
 
 ·     参考：[StackOverFlow·ssh-Could not open a…](http://stackoverflow.com/questions/17846529/could-not-open-a-connection-to-your-authentication-agent)
 
+
+
+
+
+## Emoji使用规则
+
+
+
+![image-20210717201242057](/Volumes/work/Project/myblog/doc/assets/tool31.png)
