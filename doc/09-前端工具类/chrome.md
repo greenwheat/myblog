@@ -6,5 +6,5 @@
 
 chrome://flags/#schemeful-same-site （尝试disabled没有解决问题）
 
-![image-20210607182126951](/Volumes/work/Project/myblog/doc/assets/tool03.png)
+![image-20210607182126951](../assets/tool03.png)
 
