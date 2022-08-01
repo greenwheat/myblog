@@ -1,5 +1,5 @@
 # 静态页面/文档生成工具
-	
+
 - gitbook
 - hexo
 - docsify
@@ -8,3 +8,14 @@
 - vue-styleguidist：自动提取vue组件api，可带示例；https://www.jianshu.com/p/e6745ed87563
 - gridsome
 - storybook：UI组件开发工具；https://www.jianshu.com/p/9cb75ae50515
+
+
+
+
+
+快速启动一个简单的静态服务：
+
+```bash
+python3 -m http.server 8000
+```
+

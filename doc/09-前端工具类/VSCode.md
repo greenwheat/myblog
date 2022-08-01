@@ -70,4 +70,44 @@
 
 - 这时，你就可以从应用程序里删除 vscode 了
 - 下载并重新安装（为啥这么费劲）
+  
   > 翻译自：https://medium.com/@jimkang/complete-uninstall-remove-vscode-mac-5e48bef3bdec
+
+
+
+### 6. VSCode的snippets中的一些变量
+
+例如:
+
+  TM_SELECTED_TEXT The currently selected text or the empty string 当前被选中的文字或空串
+  TM_CURRENT_LINE The contents of the current line 当前一行的内容
+  TM_CURRENT_WORD The contents of the word under cursor or the empty string 光标选中的字符内容或空串
+  TM_LINE_INDEX The zero-index based line number 
+  TM_LINE_NUMBER The one-index based line number
+  TM_FILENAME The filename of the current document
+  TM_FILENAME_BASE The filename of the current document without its extensions
+  TM_DIRECTORY The directory of the current document
+  TM_FILEPATH The full file path of the current document
+  CLIPBOARD The contents of your clipboard
+  WORKSPACE_NAME The name of the opened workspace or folder
+
+可以插入当前日期和时间:
+
+  CURRENT_YEAR The current year
+  CURRENT_YEAR_SHORT The current year’s last two digits
+  CURRENT_MONTH The month as two digits (example ‘02’)
+  CURRENT_MONTH_NAME The full name of the month (example ‘July’)
+  CURRENT_MONTH_NAME_SHORT The short name of the month (example ‘Jul’)
+  CURRENT_DATE The day of the month
+  CURRENT_DAY_NAME The name of day (example ‘Monday’)
+  CURRENT_DAY_NAME_SHORT The short name of the day (example ‘Mon’)
+  CURRENT_HOUR The current hour in 24-hour clock format
+  CURRENT_MINUTE The current minute
+  CURRENT_SECOND The current second
+
+For inserting line or block comments, honoring the current language:
+
+  BLOCK_COMMENT_START Example output: in PHP /* or in HTML <!–
+  BLOCK_COMMENT_END Example output: in PHP */ or in HTML -->
+  LINE_COMMENT Example output: in PHP // or in HTML <!-- -->
+

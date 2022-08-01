@@ -99,7 +99,7 @@
    npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
-### 15 添加.gitignore无效
+#### 15 添加.gitignore无效
 
 把某些目录或文件加入忽略规则，按照上述方法定义后发现并未生效，原因是.gitignore只能忽略那些原来没有被追踪的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。那么解决方法就是先把本地缓存删除（改变成未被追踪状态），然后再提交：
 
@@ -108,6 +108,81 @@ git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
 ```
+
+
+
+#### 16. 自定义多个远程仓库
+
+查看下当前的远程仓库
+
+```bash 
+$ git remote -v
+origin	git@git.jd.com:consumer-finance-jt/goldbullion.git (fetch)
+origin	git@git.jd.com:consumer-finance-jt/goldbullion.git (push)
+```
+
+增加新的远程仓库
+
+```bash
+$ git remote add coding git@coding.jd.com:zhengli80/goldbullion.git
+```
+
+再看下此时的远程仓库配置
+
+```bash 
+$ git remote -v
+coding	git@coding.jd.com:zhengli80/goldbullion.git (fetch)
+coding	git@coding.jd.com:zhengli80/goldbullion.git (push)
+origin	git@git.jd.com:consumer-finance-jt/goldbullion.git (fetch)
+origin	git@git.jd.com:consumer-finance-jt/goldbullion.git (push)
+```
+
+当我们在提交代码时，可选择提交哪一个仓库
+
+```bash 
+# 提交coding
+$ git push coding
+# 提交初始仓库
+$ git push origin
+```
+
+更换默认远程仓库
+
+```bash 
+# 移除原origin仓库
+$ git remote rm origin
+# 添加新远程仓库作为默认仓库
+$ git remote add origin git@coding.jd.com:zhengli80/goldbullion.git
+```
+
+或者直接替换
+
+```bash
+$ git remote set-url origin git@coding.jd.com:consumer-finance-jt/goldbullion.git
+```
+
+
+
+#### 17、git 设置文件大小写敏感
+
+- 方法一
+命令设置Git大小写敏感：
+git config core.ignorecase false
+
+- 方法二
+找到项目的 .git 文件夹（window默认是隐藏的，设置显示隐藏的项目即可出现） 下的 config 文件打开，将
+
+​		ignorecase = true 设置成 ignorecase = false
+
+​		即可
+
+- 方法三
+先删除文件，提交；
+再添加进去，提交
+
+
+
+
 
 
 
